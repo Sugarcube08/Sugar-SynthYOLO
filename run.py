@@ -1,4 +1,5 @@
 import os
+from datetime import datetime
 import random
 from PIL import Image, ImageDraw, ImageFont
 
@@ -151,7 +152,8 @@ def generate_dataset(input_img_path, n_samples=10):
         base = base.resize((base_w, base_h), resample=Image.BICUBIC)
 
     for i in range(n_samples):
-        print(f"Generating sample {i+1}/{n_samples}", end="\r")
+        start = datetime.now()
+
         canvas_clean = Image.new("RGB", CANVAS_SIZE, (255, 255, 255))
         canvas_debug = Image.new("RGB", CANVAS_SIZE, (255, 255, 255))
 
@@ -209,6 +211,9 @@ def generate_dataset(input_img_path, n_samples=10):
         with open(os.path.join("dataset/labels", f"sample_{i}.txt"), "w") as lf:
             lf.write("\n".join(label_lines))
             lf.write(f"\nQty={qty_val} Price={price_val}")
+
+        end = datetime.now()
+        print(f"Generating sample {i+1}/{n_samples} in {end-start}", end="\r")
 
     print(f"✅ Generated {n_samples} samples")
     print(" - dataset/images/   -> clean images")

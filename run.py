@@ -6,7 +6,7 @@ from PIL import Image, ImageDraw, ImageFont
 CANVAS_SIZE = (1024, 1024)      # final canvas size
 FONT_DIR = "fonts"              # folder with .ttf/.otf/.ttc fonts
 INPUT_IMAGE = "input.png"       # your clean template
-N_SAMPLES = 10000                  # how many samples to generate
+N_SAMPLES = int(input("Enter N-Sample: "))                  # how many samples to generate
 MAX_ROT = 15                    # rotation range (-MAX_ROT .. +MAX_ROT)
 # ----------------------------
 
